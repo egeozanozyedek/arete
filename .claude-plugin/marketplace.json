@@ -15,22 +15,7 @@
       "version": "1.0.0",
       "author": {
         "name": "Jesus Garcia Ramirez"
-      },
-      "repository": "https://github.com/jesgarram/arete",
-      "license": "MIT",
-      "keywords": [
-        "brainstorming",
-        "cognitive",
-        "protocol",
-        "planning",
-        "architecture"
-      ],
-      "skills": [
-        "./skills/diverge",
-        "./skills/converge",
-        "./skills/refine",
-        "./skills/export"
-      ]
+      }
     }
   ]
 }

@@ -1,6 +1,7 @@
 ---
+name: architect
 description: Generate architecture diagram from ADR section
-capabilities: ["mermaid-diagrams", "architecture-visualization", "adr-processing"]
+model: sonnet
 ---
 
 # Architect

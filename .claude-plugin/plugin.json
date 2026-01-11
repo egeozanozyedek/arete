@@ -16,8 +16,5 @@
     "design",
     "divergent-thinking",
     "convergent-thinking"
-  ],
-  "skills": "./skills/",
-  "agents": "./agents/",
-  "commands": "./commands/"
+  ]
 }
