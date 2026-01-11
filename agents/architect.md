@@ -1,5 +1,6 @@
 ---
-description: Generate architecture diagram from brainstorm session
+description: Generate architecture diagram from ADR section
+capabilities: ["mermaid-diagrams", "architecture-visualization", "adr-processing"]
 ---
 
 # Architect
