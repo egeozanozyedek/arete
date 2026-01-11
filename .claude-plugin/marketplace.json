@@ -1,0 +1,36 @@
+{
+  "name": "arete-marketplace",
+  "owner": {
+    "name": "Jesus Garcia Ramirez"
+  },
+  "metadata": {
+    "description": "Cognitive brainstorming protocol for Claude Code",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "arete",
+      "source": "./",
+      "description": "Cognitive brainstorming protocol: DIVERGE -> CONVERGE -> REFINE. Includes domain skills for technical architecture (DDIA patterns) and conceptual work (presentations, articles).",
+      "version": "1.0.0",
+      "author": {
+        "name": "Jesus Garcia Ramirez"
+      },
+      "repository": "https://github.com/jesgarram/arete",
+      "license": "MIT",
+      "keywords": [
+        "brainstorming",
+        "cognitive",
+        "protocol",
+        "planning",
+        "architecture"
+      ],
+      "skills": [
+        "./skills/diverge",
+        "./skills/converge",
+        "./skills/refine",
+        "./skills/export"
+      ]
+    }
+  ]
+}
