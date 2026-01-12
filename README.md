@@ -2,7 +2,7 @@
 
 *ἀρετή — excellence earned through effort, not given.*
 
-A brainstorming framework for Claude Code that argues back.
+A structured brainstorming framework for Claude Code that argues back.
 
 ## The Problem
 
