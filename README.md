@@ -27,36 +27,61 @@ That pause is the point.
 
 ```mermaid
 flowchart TB
-    subgraph input[" "]
-        PROBLEM["Your Problem"]
-    end
+    %% Styles - C4-ish Palette
+    classDef person fill:#08427b,stroke:#052e56,color:white,rx:10,ry:10;
+    classDef process fill:#23a2d9,stroke:#0e7db8,color:white,rx:5,ry:5;
+    classDef agent fill:#1168bd,stroke:#0b4884,color:white,rx:5,ry:5;
+    classDef data fill:#999999,stroke:#666666,color:white,rx:0,ry:0;
+    classDef artifact fill:#438dd5,stroke:#2e6295,color:white,rx:0,ry:0,stroke-dasharray: 5 5;
 
-    subgraph phases["Brainstorm Phases"]
-        direction LR
-        DIVERGE["DIVERGE<br/><i>System 1</i><br/>Explore widely"]
-        CONVERGE["CONVERGE<br/><i>System 2</i><br/>Force decision"]
-        REFINE["REFINE<br/><i>System 2</i><br/>Stress-test"]
-        EXPORT["EXPORT<br/>Save artifact"]
-        
-        DIVERGE --> CONVERGE --> REFINE --> EXPORT
-    end
+    %% Nodes
+    User(User):::person
+    Problem[Problem Input]:::data
 
-    subgraph domains["Domain Knowledge"]
+    subgraph Arete["Arete System"]
         direction TB
-        TECHNICAL["Technical<br/>distributed systems, storage,<br/>data models, partitioning"]
-        CONCEPTUAL["Conceptual<br/>presentations, writing,<br/>talks, teaching"]
+        
+        subgraph Researcher["Sub-Agents"]
+            ResAgent[Researcher<br/><i>Web & Repo Search</i>]:::agent
+        end
+
+        subgraph Phases["Brainstorming Pipeline"]
+            direction LR
+            Diverge[DIVERGE<br/><i>Explore</i>]:::process
+            Converge[CONVERGE<br/><i>Decide</i>]:::process
+            Refine[REFINE<br/><i>Polish</i>]:::process
+            Export[EXPORT<br/><i>Save</i>]:::process
+            
+            Diverge --> Converge --> Refine --> Export
+        end
+        
+        Domains[(Domain<br/>Knowledge)]:::data
     end
 
-    subgraph output[" "]
-        ADR["ADR + Diagrams"]
+    subgraph Artifacts["Output Artifacts"]
+        direction TB
+        subgraph Tech["Technical Track"]
+            ADR[ADR<br/><i>exports/</i>]:::artifact
+            Plan[Implementation Plan<br/><i>plans/</i>]:::artifact
+        end
+        subgraph Conc["Conceptual Track"]
+            Outline[Outline<br/><i>exports/</i>]:::artifact
+        end
     end
 
-    PROBLEM --> DIVERGE
-    TECHNICAL -.->|questions| DIVERGE
-    TECHNICAL -.->|questions| REFINE
-    CONCEPTUAL -.->|questions| DIVERGE
-    CONCEPTUAL -.->|questions| REFINE
-    EXPORT --> ADR
+    %% Connections
+    User --> Problem --> Diverge
+    
+    %% Knowledge injection
+    Domains -.-> Diverge
+    Domains -.-> Refine
+
+    %% Research loop (bidirectional, available to all phases)
+    Phases <-->|Trigger| ResAgent
+
+    %% Export Logic
+    Export --> Tech
+    Export --> Conc
 ```
 
 ## Getting Started
@@ -74,13 +99,22 @@ Start a session:
 
 ## Output
 
-Sessions become Architecture Decision Records in `context/exports/`:
+Arete generates artifacts based on the session track.
 
+**Technical Track**:
+- **ADR** (`context/exports/`): The decision record (Context, Decision, Consequences).
+- **Plan** (`context/plans/`): The implementation details (Steps, Configuration, Error Handling).
+
+**Conceptual Track**:
+- **Outline** (`context/exports/`): A structured outline for your presentation or writing.
+
+Example ADR:
 ```yaml
 ---
 problem: "Secure access to production database in private VNet"
 decision: "Private Endpoints with AAD authentication, no jumphost"
 date: 2025-01-11
+plan: "secure-access-plan-2025-01-11.md"
 ---
 ```
 
