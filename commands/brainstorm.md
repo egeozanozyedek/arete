@@ -17,31 +17,27 @@ Mantra: **Make it work → make it fast → make it pretty**
 ## Session Flow
 
 ```
-DIVERGE  →  CONVERGE  →  REFINE  →  EXPORT
-(explore)   (decide)     (polish)   (save)
+GROUND   →  EXPLORE  →  DECIDE  →  STRESS  →  SHIP
+(discover)  (diverge)   (converge)  (polish)   (save)
 ```
 
 Each phase is a skill. Phase transitions happen when:
 - User signals readiness ("let's narrow down", "I'm ready to decide")
-- Skill detects completion criteria met (diverge: 5+ directions explored, etc.)
+- Skill detects completion criteria met (ground: problem is clear, explore: 5+ directions explored, etc.)
 
 ## Initialization
 
-1. **State the problem** - Capture user's input verbatim
+1. **Invoke ground skill** - Ensure problem is understood before exploring
 2. **Detect track** - Technical or Conceptual (ask if unclear)
 3. **Set success criteria** - "Session ends when we have: [X]"
-4. **Invoke diverge skill** - Begin exploration
+4. **Invoke explore skill** - Begin exploration after grounding
 
-## Phase Transition Signals
+## Session Persistence
 
-Skills should suggest transitions when:
-
-| Phase | Completion Signal |
-|-------|-------------------|
-| Diverge | 5+ distinct directions explored, user shows preference |
-| Converge | One path selected with explicit trade-off acceptance |
-| Refine | All Jobs Filter criteria pass (simple, robust, elegant) |
-| Export | ADR/Spec or Outline written to `context/exports/` |
+Each brainstorm session writes to `context/sessions/session-{timestamp}.md`:
+- GROUND phase appends problem, who, pain, inaction cost
+- Future phases append their structured outputs
+- SHIP phase reads session file to generate artifacts
 
 ## Research Support
 
@@ -60,18 +56,4 @@ Spawn researcher subagent with:
 ```
 
 **Integration points:**
-| Phase | Research trigger |
-|-------|-----------------|
-| Diverge | "Explore how X is done elsewhere" |
-| Converge | "Validate this approach against industry patterns" |
-| Refine | "Find edge cases or failure modes for X" |
-
 Researcher returns structured findings. Incorporate relevant findings into the conversation, citing sources.
-
-## Session Completion
-
-After export, offer:
-1. **Metacognitive review** (optional) - Extract friction moments → new principles
-2. **Session summary** - What was decided and why
-
-User can skip either with "skip" or "done".
