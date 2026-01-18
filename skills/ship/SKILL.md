@@ -37,109 +37,19 @@ Two complementary documents: ADR captures the decision, Plan captures the implem
 
 The **why** and **what** of the decision. Saved to `context/exports/`.
 
-**Required sections:**
-- Context (why now, constraints, forces)
-- Decision (what was chosen, how it addresses context)
-- Consequences (positive, negative, mitigations)
-
-```markdown
----
-problem: "..."
-date: YYYY-MM-DD
-plan: "[problem-slug]-plan-YYYY-MM-DD.md"
----
-
-# [Title from brainstorm problem statement]
-
-**Status**: Proposed | Accepted | Superseded by [link]
-
-## Context
-[Why, constraints, forces at tension]
-
-## Decision
-[What was chosen, how it addresses context]
-
-[Mermaid diagram if architecture discussed]
-
-## Consequences
-**Positive:** [Specific gains]
-**Negative:** [Trade-offs accepted]
-**Mitigations:** [How negatives will be managed]
-```
+**Template:** See [`reference/ADR.md`](reference/ADR.md) for the full ADR template with required sections and naming conventions.
 
 ### Plan (Implementation Plan)
 
 The **how** of the decision. Saved to `context/plans/`.
 
-**Required sections:**
-- Implementation Steps (ordered, concrete tasks)
-- Configuration (environment vars, feature flags, settings)
-- Error Handling (failure modes, recovery, alerting)
-
-**Include if discussed:**
-- Data Model (tables, fields, types, migrations)
-- Interface (endpoints, methods, params, contracts)
-- Migration Strategy (rollout phases, rollback plan)
-- Dependencies (services, libraries, external systems)
-
-```markdown
----
-problem: "..."
-date: YYYY-MM-DD
-adr: "[problem-slug]-adr-YYYY-MM-DD.md"
----
-
-# Implementation Plan: [Title]
-
-## Implementation Steps
-1. [First concrete task]
-2. [Second concrete task]
-...
-
-## Configuration
-| Key | Value | Environment | Description |
-|-----|-------|-------------|-------------|
-| ... | ...   | ...         | ...         |
-
-## Error Handling
-| Failure Mode | Detection | Recovery | Alerting |
-|--------------|-----------|----------|----------|
-| ...          | ...       | ...      | ...      |
-
-## Data Model
-[If discussed - tables, fields, types, migration scripts]
-
-## Interface
-[If discussed - endpoints, methods, params, example requests/responses]
-
-## Migration Strategy
-[If discussed - phases, feature flags, rollback triggers]
-
-## Dependencies
-[If discussed - services, versions, SLAs]
-```
+**Template:** See [`reference/Plan.md`](reference/Plan.md) for the full Plan template with required and optional sections.
 
 ## Conceptual Track → Outline
 
-**Required:**
-- Audience (who, what they know, what they care about)
-- Objective (think/feel/do after)
+For non-technical brainstorm sessions.
 
-Structure flows naturally from brainstorm content.
-
-```markdown
----
-problem: "..."
-date: YYYY-MM-DD
----
-
-# [Title]
-
-**Audience**: [Who, background, concerns]
-**Objective**: [Desired outcome]
-
-[Sections flow from brainstorm - no rigid template]
-```
+**Template:** See [`reference/Outline.md`](reference/Outline.md) for the full Outline template with required sections and naming conventions.
 
 ## Diagram Generation
 
@@ -174,5 +84,3 @@ Both files cross-reference each other via frontmatter (`plan:` and `adr:` fields
 **Location**: `context/exports/`
 
 **Naming**: `[problem-slug]-outline-YYYY-MM-DD.md`
-
-Single file per session.
